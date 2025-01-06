@@ -1,0 +1,7 @@
+I wanted to give id attributes for all elements but I found it hard to keep them all unique
+    it felt unnecessary since I checkd a few websites and it seems to be a common practice to not have a id attribute for a lot of elements
+
+    https://www.ronaldjamesgroup.com/blog/reason-behind-using-refs-instead-of-id-in-react-js
+
+    this is the first page I found, reusability is poor with unique id's + ref is a thing in react
+
