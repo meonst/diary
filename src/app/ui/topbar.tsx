@@ -3,10 +3,11 @@ import { redirect } from "next/navigation";
 import React from "react";
 
 export default function Topbar() {
+    const a = "Minhyeok's Diary";
     return (
         <div>
-            Minhyeok's Diary
-            <button onClick={() => {redirect("/login")}}>Login</button>
+            {a}
+            <button>Login</button>
         </div>
     )
 }
