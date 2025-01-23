@@ -4,10 +4,18 @@ export default function Login() {
     return (
         <div>
             <form>
-                <input type="text" placeholder="user id" />
-                <input type="password" placeholder="********" />
-            </form>
+                <div>
+                    <div>ID: </div>
+                    <input type="text" placeholder="user id" />
+                </div>
 
+                <div>
+                    <div>PW: </div>
+                    <input type="password" placeholder="********" />
+                </div>
+                <div>return</div>
+                <button type="submit">Login</button>
+            </form>
         </div>
     )
 }

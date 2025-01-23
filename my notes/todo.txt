@@ -1,0 +1,4 @@
+1. add functions
+2. add styling
+3. add db, aws s3 bucket for media or files
+4. add security aspects(sql injection, auth, etc)

@@ -6,15 +6,18 @@ async function createPostTable() {
   await client.sql`CREATE EXTENSION IF NOT EXISTS "uuid-ossp"`;
   await client.sql`CREATE TABLE IF NOT EXISTS POST (
     id UUID DEFAULT uuid_generate_v4() PRIMARY KEY,
-    content VARCHAR(9999),
     title VARCHAR(256),
-    created_date DATE NOT NULL,
-    is_hidden BOOL NOT NULL
+    content VARCHAR(9999),
+    category VARCHAR(100),
+    date DATE NOT NULL,
+    hidden BOOL NOT NULL,
+    mediaLinkOne VARCHAR(1000),
+    mediaLinkTwo VARCHAR(1000),
+    mediaLinkThree VARCHAR(1000),
+    mediaLinkFour VARCHAR(1000),
   )`;
   return ;
 }
-// add media related column
-// add category column
 
 async function createMediaTable() {
   await client.sql`CREATE EXTENSION IF NOT EXISTS "uuid-ossp"`;
@@ -48,10 +51,15 @@ async function createUserTable() {
   )`;
   return ;
 }
+async function createUuidExtension() {
+  await client.sql`CREATE EXTENSION IF NOT EXISTS "uuid-ossp"`;
+  return
+}
 
 export async function makeDatabase() {
   try {
     await client.sql`BEGIN`;
+    await createUuidExtension();
     await createPostTable();
     await createMediaTable();
     await createCategoryTable();

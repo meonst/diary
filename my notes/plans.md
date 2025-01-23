@@ -86,3 +86,8 @@ CREATE TABLE IF NOT EXISTS MEDIA (
     created_date DATE NOT NULL,
     is hidden BOOL NOT NULL
 )
+
+
+
+
+ 
