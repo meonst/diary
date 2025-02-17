@@ -1,12 +1,26 @@
-export type Post = {
+export type PostData = {
     id: string;
     title: string;
     content: string;
     category: string;
-    date: string;
+    time: string;
     hidden: boolean;
-    mediaLinkOne: string;
-    mediaLinkTwo: string;
-    mediaLinkThree: string;
-    mediaLinkFour: string;
+    fileNameOne: string;
+    fileNameTwo: string;
+    fileNameThree: string;
+    fileNameFour: string;
 }
+
+export type PostDataSimple = {
+    
+    id: string;
+    title: string;
+    content: string;
+    category: string;
+    time: Date;
+    fileNameOne: string;
+    fileNameTwo: string;
+    fileNameThree: string;
+    fileNameFour: string;
+}
+

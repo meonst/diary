@@ -1,4 +1,18 @@
+upload multiple files(4) at once
+saving file data in db
+delete post
+login
+maybe logout?
+
+
+
 1. add functions
 2. add styling
-3. add db, aws s3 bucket for media or files
+
 4. add security aspects(sql injection, auth, etc)
+
+
+
+done
+
+aws s3 bucket for files get and put

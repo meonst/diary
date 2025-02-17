@@ -1,8 +1,8 @@
 1. login credentials
     cache login data
 
-2. make a post with media -> image, videos, link
-    media will not be saved in the database
+2. make a post with file -> image, videos, link
+    file will not be saved in the database
 
 3. two types of posts long and short
 
@@ -39,53 +39,16 @@ ui components
  
  - single_post => ui used in home and search, show multiple(i'm thinking top 50 + doomscrolling)
 
- - video ui, photo ui => for posts with media
+ - video ui, photo ui => for posts with file
 
 
 
-# database tables
+file by type
 
-## post
-|column name|description|type|etc|
-|-----------|-----------|----|---|
-|post_id|id of a post|str|pk, going to use uuid|
-|content|text content of a post|string||
-|media_count|how many media content this post has|int|a integer bigger than -1|
-|media_start|the first id of a media|int|-1 if there is none|
-|created_date|when the post is created|string|yyyy/MM/dd/hh/mm|
-|deleted_date|when the post is deleted|string|yyyy/MM/dd/hh/mm, null if a post is not deleted|
-
-## media
-|column name|description|type|etc|
-|-----------|-----------|----|---|
-|media_id|id of a media|int|pk|
-|media_name|name of the media file|string|all media will be at path "files/{media_name}"|
-
-## credential
-|column name|description|type|etc|
-|-----------|-----------|----|---|
-|credential_id|id of a credential|int|pk|
-|guid_secret|a hidden guid|string||
-|guid_public|a public guid|string||
-
-
-CREATE EXTENSION IF NOT EXISTS "uuid-ossp"
-
-CREATE TABLE IF NOT EXISTS POSTS (
-    id UUID DEFAULT uuid_generate_v4() PRIMARY KEY,
-    content VARCHAR(9999),
-    title VARCHAR(256),
-    created_date DATE NOT NULL,
-    is_hidden BOOL NOT NULL    
-)
-
-CREATE TABLE IF NOT EXISTS MEDIA (
-    id UUID DEFAULT uuid_generate_v4() PRIMARY KEY,
-    url VARCHAR(9999),
-    title VARCHAR(256),
-    created_date DATE NOT NULL,
-    is hidden BOOL NOT NULL
-)
+text: show a few lines and a downloadable link
+image: show image
+video: show video
+etc: provide downloadable link
 
 
 
