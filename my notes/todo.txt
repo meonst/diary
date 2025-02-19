@@ -1,6 +1,6 @@
 upload multiple files(4) at once
 saving file data in db
-delete post
+
 login
 maybe logout?
 
@@ -9,10 +9,4 @@ maybe logout?
 1. add functions
 2. add styling
 
-4. add security aspects(sql injection, auth, etc)
-
-
-
-done
-
-aws s3 bucket for files get and put
+4. add security aspects(auth, etc)

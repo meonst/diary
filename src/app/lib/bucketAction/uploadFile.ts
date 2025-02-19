@@ -1,8 +1,7 @@
 import { PutObjectCommand } from "@aws-sdk/client-s3";
 import { getSignedUrl } from "@aws-sdk/s3-request-presigner";
-import { currentTime } from "../misc/time";
-import { s3 } from "./client";
-import { log } from "../debug/log";
+import { currentTime} from "@/app/lib/misc/time"
+import { s3 } from "@/app/lib/bucketAction/client"
 
 const awsS3Bucket = process.env.MY_AWS_BUCKET;
 
@@ -19,13 +18,11 @@ async function getSignedFileUrl(fileName: string) {
     return url;
 }
 
-export async function uploadFile(file: any): Promise<string> {
+export async function uploadFile(file: File): Promise<string> {
     if (file.size == 0) return "";
-    // file.name = currentTime().concat(" ").concat(file.name);
     const newName = currentTime().concat(" ").concat(file.name);
 
     const url: string = await getSignedFileUrl(newName);
-    log(file.type, "filetype");
     try {
         const uploadRes = await fetch(url, {
             method: "PUT",

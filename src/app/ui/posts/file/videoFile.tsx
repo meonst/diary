@@ -1,9 +1,8 @@
 'use client'
 export default function VideoFile({ fileUrl, fileName }: { fileUrl: string, fileName: string }) {
     return (
-        
-        <video key={fileName}
 
+        <video key={fileName}
             onMouseOver={(event) => {
                 event.currentTarget.setAttribute("controls", "");
             }}
@@ -13,6 +12,6 @@ export default function VideoFile({ fileUrl, fileName }: { fileUrl: string, file
         >
             <source src={fileUrl}></source>
         </video>
-    
+
     )
 }

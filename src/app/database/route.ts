@@ -5,13 +5,11 @@ const client = await db.connect();
 async function createPostsTable() {
     await client.sql`CREATE TABLE IF NOT EXISTS posts (
     id UUID DEFAULT uuid_generate_v4() PRIMARY KEY,
-    title VARCHAR,
     content VARCHAR,
     file_name_one VARCHAR,
     file_name_two VARCHAR,
     file_name_three VARCHAR,
     file_name_four VARCHAR,
-    category VARCHAR,
     time TIMESTAMP NOT NULL,
     hidden VARCHAR NOT NULL
   )`;

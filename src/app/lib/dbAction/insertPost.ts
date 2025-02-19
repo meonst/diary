@@ -1,8 +1,8 @@
 'use server';
 import { z } from 'zod';
-import { sql } from '@vercel/postgres';
-import { uploadFile } from '../bucketAction/uploadFile';
-import { currentTime } from '../misc/time';
+import { QueryConfig, sql } from '@vercel/postgres';
+import { uploadFile } from '@/app/lib/bucketAction/uploadFile';
+import { currentTime } from '@/app/lib/misc/time';
 
 const FormSchema = z.object({
     id: z.string(),
@@ -37,16 +37,17 @@ export default async function insertPost(formData: FormData) {
         category: formData.get('category'),
         file: formData.get('file')
     });
-    // console.log('console log manual start')
-    // console.log(file);
     const fileNameOne: string = await uploadFile(file);
     const fileNameTwo: string = "";
     const fileNameThree: string = "";
     const fileNameFour: string = "";
-
-    // console.log('console log manual end')
     const time = currentTime();
-
-    await sql`INSERT INTO posts (title, content, category, time, hidden, file_name_one, file_name_two, file_name_three, file_name_four)
-        VALUES (${title}, ${content}, ${category}, ${time}, 0, ${fileNameOne}, ${fileNameTwo}, ${fileNameThree}, ${fileNameFour})`
+    const queryConfig: QueryConfig = {
+        text: `
+        INSERT INTO posts (content, time, hidden, file_name_one, file_name_two, file_name_three, file_name_four) 
+        VALUES ($1, $2, 0, $3, $4, $5, $6)
+        `,
+        values: [title, content, category, time, fileNameOne, fileNameTwo, fileNameThree, fileNameFour]
+    }
+    await sql.query(queryConfig);
 }

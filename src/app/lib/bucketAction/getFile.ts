@@ -52,13 +52,3 @@ export async function getFileWithName(fileName: string) {
         console.log(err);
     }
 }
-
-// export async function getFileWithUrl(url: string) {
-//     const params = {
-//         Bucket: awsS3Bucket,
-//         Key: url,
-//     }
-//     const command = new GetObjectCommand(params);
-//     const response = await s3.send(command);
-//     return response;
-// }

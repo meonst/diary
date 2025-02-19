@@ -1,8 +1,8 @@
 import React from 'react';
 import { getFileWithName, getHead, getSignedFileUrl } from '@/app/lib/bucketAction/getFile';
-import TextFile from './file/textFile';
-import ImageFile from './file/imageFile';
-import VideoFile from './file/videoFile';
+import TextFile from '@/app/ui/posts/file/textFile';
+import ImageFile from '@/app/ui/posts/file/imageFile';
+import VideoFile from '@/app/ui/posts/file/videoFile';
 import { getSignedUrl } from '@aws-sdk/s3-request-presigner';
 import { log } from '@/app/lib/debug/log';
 

@@ -1,0 +1,5 @@
+2025-02-19
+
+added hide post functionality
+changed sql queries to prevent sql injection
+changed image files to use <Image> instead of <img>
