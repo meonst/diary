@@ -6,7 +6,7 @@ import { SignUpFormSchema } from '@/app/lib/definitions';
 import { redirect } from 'next/navigation';
 import { currentTime } from '@/app/lib/misc/time';
 import { SignUpFormState } from '@/app/lib/definitions';
-async function isExistingEmail(email: string): Promise<Boolean> {
+async function isExistingEmail(email: string): Promise<boolean> {
     const queryConfig: QueryConfig = {
         text: `SELECT id, email FROM users WHERE email = $1`,
         values: [email]
