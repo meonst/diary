@@ -4,15 +4,15 @@ import File from '@/app/ui/posts/file';
 import { log } from '@/app/lib/debug/log';
 import { dateString } from '@/app/lib/misc/time';
 import DeleteButton from '@/app/ui/posts/delete/deleteButton';
-export default function PostSimple({ postDataSimple }: { postDataSimple: PostData }) {
-    const time = postDataSimple.time;
-    const content = postDataSimple.content;
-    const id = postDataSimple.id;
+export default function PostSimple({ postData }: { postData: PostData }) {
+    const time = postData.time;
+    const content = postData.content;
+    const id = postData.id;
 
-    const fileNameOne = postDataSimple.fileNameOne;
-    const fileNameTwo = postDataSimple.fileNameTwo;
-    const fileNameThree = postDataSimple.fileNameThree;
-    const fileNameFour = postDataSimple.fileNameFour;
+    const fileNameOne = postData.fileNameOne;
+    const fileNameTwo = postData.fileNameTwo;
+    const fileNameThree = postData.fileNameThree;
+    const fileNameFour = postData.fileNameFour;
 
     const files: string[] = [];
     if (fileNameOne != "") files.push(fileNameOne);

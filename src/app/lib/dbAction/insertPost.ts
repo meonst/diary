@@ -20,16 +20,6 @@ const FormSchema = z.object({
 
 const CreatePost = FormSchema.omit({ id: true, time: true, hidden: true, fileNameOne: true, fileNameTwo: true, fileNameThree: true, fileNameFour: true})
 
-export type State = {
-    errors?: {
-        customerId?: string[];
-        amount?: string[];
-        status?: string[];
-    };
-    message?: string | null;
-};
-
-
 export default async function insertPost(formData: FormData) {
     const { title, content, category, file } = CreatePost.parse({
         title: formData.get('title'),

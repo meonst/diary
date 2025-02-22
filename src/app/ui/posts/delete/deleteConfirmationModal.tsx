@@ -7,7 +7,7 @@ function hidePostElement(postId: string) {
     hidePost(postId);
 }
 
-export default function DeleteConfirmation({ postId, onClose }: { postId: string, onClose: MouseEventHandler }) {
+export default function DeleteConfirmationModal({ postId, onClose }: { postId: string, onClose: MouseEventHandler }) {
     return (
         <div>
             Delete?

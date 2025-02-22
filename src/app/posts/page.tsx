@@ -1,20 +1,18 @@
 import React from 'react';
-import MakePost from '@/app/ui/posts/makePost';
+import MakePostForm from '@/app/ui/posts/makePostForm';
 import { PostData } from '@/app/lib/definitions';
 import { getPostData } from '@/app/lib/dbAction/getPosts';
 import PostSimple from '@/app/ui/posts/postSimple';
 
 export default async function Page() {
-
-    const postDataSimpleArray: PostData[] = await getPostData();
-
+    const postDataArray: PostData[] = await getPostData();
     return (
         <div>
-            <MakePost />
+            <MakePostForm />
             {
-                postDataSimpleArray.map((postDataSimple) => {
+                postDataArray.map((postData) => {
                     return (
-                        <PostSimple postDataSimple={postDataSimple} key={postDataSimple["id"]}></PostSimple>
+                        <PostSimple postData={postData} key={postData["id"]} />
                     )
                 })
             }

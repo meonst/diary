@@ -16,15 +16,6 @@ async function createPostsTable() {
     return;
 }
 
-async function createCategoriesTable() {
-    await client.sql`CREATE TABLE IF NOT EXISTS categories (
-    id UUID DEFAULT uuid_generate_v4() PRIMARY KEY,
-    name VARCHAR NOT NULL,
-    time TIMESTAMP NOT NULL
-  )`;
-    return;
-}
-
 async function createUsersTable() {
     await client.sql`CREATE TABLE IF NOT EXISTS users (
     id UUID DEFAULT uuid_generate_v4() PRIMARY KEY,
@@ -55,7 +46,6 @@ export async function GET() {
         await createUuidExtension();
         await createPostsTable();
         await createFilesTable();
-        await createCategoriesTable();
         await createUsersTable();
         await client.sql`COMMIT`;
 

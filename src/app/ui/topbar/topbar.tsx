@@ -6,7 +6,7 @@ export default function Topbar() {
     return (
         <div>
             {"Minhyeok's Diary"}
-            <Link href='/login'>Login</Link>
+            <Link href='/authenticate/login'>Login</Link>
         </div>
     )
 }

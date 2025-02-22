@@ -1,7 +1,7 @@
 'use client'
 
 import { createPortal } from "react-dom"
-import DeleteConfirmation from "@/app/ui/posts/delete/deleteConfirmation"
+import DeleteConfirmation from "@/app/ui/posts/delete/deleteConfirmationModal"
 import { useState } from "react";
 
 
