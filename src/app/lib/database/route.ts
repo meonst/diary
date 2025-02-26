@@ -1,5 +1,5 @@
 import { db } from "@vercel/postgres";
-
+import { verifySession } from "@/app/lib/authentication/dal";
 const client = await db.connect();
 
 async function createPostsTable() {
@@ -43,6 +43,8 @@ async function createUuidExtension() {
 }
 
 export async function GET() {
+  const session = await verifySession();
+  if (session.userRole != "admin") return;
   try {
     await client.sql`BEGIN`;
     await createUuidExtension();

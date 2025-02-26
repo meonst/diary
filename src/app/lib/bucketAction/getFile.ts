@@ -1,8 +1,6 @@
 import { GetObjectCommand, HeadObjectCommand } from "@aws-sdk/client-s3";
 import { getSignedUrl } from "@aws-sdk/s3-request-presigner";
-
 import { s3 } from "./client";
-import { createWriteStream } from "fs";
 const awsS3Bucket = process.env.MY_AWS_BUCKET;
 
 export async function getSignedFileUrl(fileName: string) {
