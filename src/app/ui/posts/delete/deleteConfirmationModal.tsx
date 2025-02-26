@@ -1,19 +1,30 @@
-'use client'
-import hidePost from "@/app/lib/dbAction/hidePost"
+"use client";
+import hidePost from "@/app/lib/dbAction/hidePost";
 import { EventHandler, MouseEventHandler } from "react";
 
-function hidePostElement(postId: string) {
+export default function DeleteConfirmationModal({
+  postId,
+  onClose,
+}: {
+  postId: string;
+  onClose: MouseEventHandler;
+}) {
+  function hidePostElement(postId: string) {
     document.getElementById(postId)?.setAttribute("hidden", "1");
     hidePost(postId);
-}
-
-export default function DeleteConfirmationModal({ postId, onClose }: { postId: string, onClose: MouseEventHandler }) {
-    return (
-        <div>
-            Delete?
-            <button onClick={() => { hidePostElement(postId) }}>Yes</button>
-            <button onClick={onClose}>No</button>
-        </div>
-
-    )
+  }
+  return (
+    <div>
+      Delete?
+      <button
+        onClick={(event) => {
+          hidePostElement(postId);
+          onClose(event);
+        }}
+      >
+        Yes
+      </button>
+      <button onClick={onClose}>No</button>
+    </div>
+  );
 }

@@ -3,3 +3,9 @@ make sure data you get from the database is the same type as the one you want!!!
 postgres naming convention snake_case for tables and columns 
 
 maybe a naming convention for the variables
+
+
+pnpm run dev: for development
+pnpm lint: for linting
+pnpm run build: to build
+pnpm exec prettier . --write: for running preetier
