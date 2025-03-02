@@ -20,11 +20,11 @@ export default function PostSimple({ postData }: { postData: PostData }) {
   if (fileNameFour != "") files.push(fileNameFour);
 
   return (
-    <div id={id} key={id}>
-      <div>{content}</div>
-      {files.map((fileName) => {
+    <div id={id} className="border-2 border-green-500">
+      <div className="h-fit w-max">{content}</div>
+      {files.map((fileName: string, index: number) => {
         return (
-          <div key={fileName}>
+          <div key={index}>
             <FileWithName fileName={fileName} />
           </div>
         );

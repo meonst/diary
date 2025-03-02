@@ -8,7 +8,6 @@ export default function VideoFile({
 }) {
   return (
     <video
-      key={fileName}
       onMouseOver={(event) => {
         event.currentTarget.setAttribute("controls", "");
       }}

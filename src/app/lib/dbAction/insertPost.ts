@@ -5,19 +5,13 @@ import { uploadFile } from "@/app/lib/bucketAction/uploadFile";
 import { currentTime } from "@/app/lib/misc/time";
 import { verifySession } from "@/app/lib/authentication/dal";
 
-const FormSchema = z.object({
-  content: z.string(),
-});
-
-export default async function insertPost(formData: FormData, files: File[]) {
+export default async function insertPost(
+  formData: FormData,
+  files: File[],
+  content: string,
+) {
   const session = await verifySession();
   if (!session || !session.isAuth || session.userRole != "admin") return;
-
-  const { content } = FormSchema.parse({
-    content: formData.get("content"),
-  });
-  console.log(content);
-
   const fileNames: string[] = [];
   for (let i = 0; i < files.length; i++) {
     fileNames.push(await uploadFile(files[i]));

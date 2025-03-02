@@ -7,5 +7,7 @@ export default function ImageFile({
   fileUrl: string;
   fileName: string;
 }) {
-  return <Image src={fileUrl} alt={fileName} width="100" height="100"></Image>;
+  return (
+    <Image src={fileUrl} alt={fileName} width={1920} height={1080}></Image>
+  );
 }

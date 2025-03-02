@@ -9,3 +9,6 @@ pnpm run dev: for development
 pnpm lint: for linting
 pnpm run build: to build
 pnpm exec prettier . --write: for running preetier
+
+emojis I use
+🗑️🗂️❌✍️

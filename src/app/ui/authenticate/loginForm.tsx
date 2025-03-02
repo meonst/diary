@@ -8,7 +8,7 @@ export default function LoginForm() {
   const [state, action, pending] = useActionState(handleLogin, undefined);
   return (
     <div>
-      <form action={action}>
+      <form action={action} className="">
         <div>
           <input type="email" name="email" placeholder="Email" required />
         </div>

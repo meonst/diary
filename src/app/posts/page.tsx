@@ -9,11 +9,15 @@ export default async function Page() {
   const session = await verifySession();
   const isAdmin = session.isAuth && session.userRole == "admin";
   return (
-    <div>
-      {isAdmin && <MakePostForm />}
-      {postDataArray.map((postData: PostData) => {
-        return <PostSimple postData={postData} key={postData["id"]} />;
-      })}
+    <div className="flex columns-3">
+      <div className="flex-1/3"></div>
+      <div className="flex-1/3">
+        {isAdmin && <MakePostForm />}
+        {postDataArray.map((postData: PostData, index: number) => {
+          return <PostSimple postData={postData} key={index} />;
+        })}
+      </div>
+      <div className="flex-1/3"></div>
     </div>
   );
 }

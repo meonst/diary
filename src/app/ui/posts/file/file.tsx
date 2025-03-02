@@ -25,11 +25,11 @@ export function FileWithFile(file: File) {
 }
 
 function FileByType(fileName: string, fileUrl: string, fileType: string) {
-  if (fileType == text) {
-    return <TextFile fileUrl={fileUrl} fileName={fileName} />;
-  } else if (fileType == image) {
-    return <ImageFile fileUrl={fileUrl} fileName={fileName} />;
-  } else if (fileType == video) {
-    return <VideoFile fileUrl={fileUrl} fileName={fileName} />;
-  }
+  return (
+    <div>
+      {fileType == text && <TextFile fileUrl={fileUrl} fileName={fileName} />}
+      {fileType == image && <ImageFile fileUrl={fileUrl} fileName={fileName} />}
+      {fileType == video && <VideoFile fileUrl={fileUrl} fileName={fileName} />}
+    </div>
+  );
 }
