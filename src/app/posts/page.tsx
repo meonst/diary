@@ -9,7 +9,7 @@ export default async function Page() {
   const session = await verifySession();
   const isAdmin = session.isAuth && session.userRole == "admin";
   return (
-    <div className="flex flex-col columns-3 items-center">
+    <div className="flex columns-3 flex-col items-center">
       <div className="max-w-xl">
         {isAdmin && <MakePostForm />}
         {postDataArray.map((postData: PostData, index: number) => {
@@ -18,4 +18,4 @@ export default async function Page() {
       </div>
     </div>
   );
-} 
+}

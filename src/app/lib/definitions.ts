@@ -41,3 +41,5 @@ export type SignUpFormState =
       message?: string;
     }
   | undefined;
+
+export type ClassName = string;

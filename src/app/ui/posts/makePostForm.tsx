@@ -5,7 +5,10 @@ import checkLog from "@/app/lib/debug/checkLog";
 import { DragEvent } from "react";
 import { useState } from "react";
 import { FileWithFile } from "@/app/ui/posts/file/file";
-
+import {
+  fileContainerClassNames,
+  fileClassNames,
+} from "@/app/ui/posts/file/fileClusterClassNames";
 export default function MakePostForm() {
   const [files, setFiles] = useState<File[]>([]);
   const [content, setContent] = useState<string>("");
@@ -58,33 +61,6 @@ export default function MakePostForm() {
     event.target.value = "";
     setFiles(newFiles);
   }
-
-  const fileContainerClassNames = [
-    "text-center items-center min-h-72 w-full grid grid-cols-1 grid-rows-1",
-    "text-center items-center min-h-72 w-full grid grid-cols-2 grid-rows-1",
-    "text-center items-center min-h-72 w-full grid grid-cols-2 grid-rows-2",
-    "text-center items-center min-h-72 w-full grid grid-cols-2 grid-rows-2",
-  ];
-  const fileClassNames = [
-    [
-      "flex border-1 relative m-0.5 p-0 w-full h-full min-h-36 overflow-hidden aspect-16/9 justify-center items-center bg-black"
-    ],
-    [
-      "flex border-1 relative m-0.5 p-0 w-full h-full min-h-36 overflow-hidden aspect-16/9 justify-center items-center bg-black",
-      "flex border-1 relative m-0.5 p-0 w-full h-full min-h-36 overflow-hidden aspect-16/9 justify-center items-center bg-black",
-    ],
-    [
-      "flex border-1 relative m-0.5 p-0 w-full h-full min-h-36 overflow-hidden row-span-2 aspect-16/9 justify-center items-center bg-black",
-      "flex border-1 relative m-0.5 p-0 w-full h-full min-h-36 overflow-hidden row-span-1 aspect-16/9 justify-center items-center bg-black",
-      "flex border-1 relative m-0.5 p-0 w-full h-full min-h-36 overflow-hidden row-span-1 aspect-16/9 justify-center items-center bg-black",
-    ],
-    [
-      "flex border-1 relative m-0.5 p-0 w-full h-full min-h-36 overflow-hidden aspect-16/9 justify-center items-center bg-black",
-      "flex border-1 relative m-0.5 p-0 w-full h-full min-h-36 overflow-hidden aspect-16/9 justify-center items-center bg-black",
-      "flex border-1 relative m-0.5 p-0 w-full h-full min-h-36 overflow-hidden aspect-16/9 justify-center items-center bg-black",
-      "flex border-1 relative m-0.5 p-0 w-full h-full min-h-36 overflow-hidden aspect-16/9 justify-center items-center bg-black",
-    ],
-  ];
 
   return (
     <div
