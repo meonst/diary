@@ -8,6 +8,6 @@ export default function ImageFile({
   fileName: string;
 }) {
   return (
-    <Image src={fileUrl} alt={fileName} width={1920} height={1080}></Image>
+    <Image src={fileUrl} alt={fileName} width={1920} height={1080} className="object-cover object-center"></Image>
   );
 }

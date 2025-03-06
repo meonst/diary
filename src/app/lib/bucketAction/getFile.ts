@@ -7,6 +7,7 @@ export async function getSignedFileUrl(fileName: string) {
   const params = {
     Bucket: awsS3Bucket,
     Key: fileName,
+    body: "",
   };
 
   const command = new GetObjectCommand(params);
@@ -21,6 +22,7 @@ export async function getHead(fileName: string) {
   const params = {
     Bucket: awsS3Bucket,
     Key: fileName,
+    body: "",
   };
   const command = new HeadObjectCommand(params);
   try {
@@ -36,6 +38,7 @@ export async function getFileWithName(fileName: string) {
   const params = {
     Bucket: awsS3Bucket,
     Key: fileName,
+    body: "",
   };
   const command = new GetObjectCommand(params);
   try {

@@ -1,8 +1,10 @@
-add comments <- not priority
-add a search function
-cache the post data so i don't have to get it every time
-add tests
-i want a drag and drop feature to change the order of the files before it is posted
+1. add comments <- not priority
+2. add a search function
+3. cache the post data so i don't have to get it every time
+4. add tests
+5. i want a drag and drop feature to change the order of the files before it is posted
+6. add doomscrolling
+
 
 saving file data in db
 

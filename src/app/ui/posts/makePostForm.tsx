@@ -60,27 +60,29 @@ export default function MakePostForm() {
   }
 
   const fileContainerClassNames = [
-    "text-center items-center h-72 grid grid-cols-1 grid-rows-1",
-    "text-center items-center h-72 grid grid-cols-2 grid-rows-1",
-    "text-center items-center h-72 grid grid-cols-2 grid-rows-2",
-    "text-center items-center h-72 grid grid-cols-2 grid-rows-2",
+    "text-center items-center min-h-72 w-full grid grid-cols-1 grid-rows-1",
+    "text-center items-center min-h-72 w-full grid grid-cols-2 grid-rows-1",
+    "text-center items-center min-h-72 w-full grid grid-cols-2 grid-rows-2",
+    "text-center items-center min-h-72 w-full grid grid-cols-2 grid-rows-2",
   ];
   const fileClassNames = [
-    ["border-1 relative m-0.5 p-0 max-w-full max-h-full overflow-hidden"],
     [
-      "border-1 relative m-0.5 p-0 max-w-full max-h-full overflow-hidden",
-      "border-1 relative m-0.5 p-0 max-w-full max-h-full overflow-hidden",
+      "flex border-1 relative m-0.5 p-0 w-full h-full min-h-36 overflow-hidden aspect-16/9 justify-center items-center bg-black"
     ],
     [
-      "row-span-2 aspect-auto border-1 relative m-0.5 p-0 max-w-full max-h-full overflow-hidden",
-      "row-span-1 aspect-auto border-1 relative m-0.5 p-0 max-w-full max-h-full overflow-hidden",
-      "row-span-1 aspect-auto border-1 relative m-0.5 p-0 max-w-full max-h-full overflow-hidden",
+      "flex border-1 relative m-0.5 p-0 w-full h-full min-h-36 overflow-hidden aspect-16/9 justify-center items-center bg-black",
+      "flex border-1 relative m-0.5 p-0 w-full h-full min-h-36 overflow-hidden aspect-16/9 justify-center items-center bg-black",
     ],
     [
-      "aspect-auto border-1 relative m-0.5 p-0 max-w-full max-h-full overflow-hidden",
-      "aspect-auto border-1 relative m-0.5 p-0 max-w-full max-h-full overflow-hidden",
-      "aspect-auto border-1 relative m-0.5 p-0 max-w-full max-h-full overflow-hidden",
-      "aspect-auto border-1 relative m-0.5 p-0 max-w-full max-h-full overflow-hidden",
+      "flex border-1 relative m-0.5 p-0 w-full h-full min-h-36 overflow-hidden row-span-2 aspect-16/9 justify-center items-center bg-black",
+      "flex border-1 relative m-0.5 p-0 w-full h-full min-h-36 overflow-hidden row-span-1 aspect-16/9 justify-center items-center bg-black",
+      "flex border-1 relative m-0.5 p-0 w-full h-full min-h-36 overflow-hidden row-span-1 aspect-16/9 justify-center items-center bg-black",
+    ],
+    [
+      "flex border-1 relative m-0.5 p-0 w-full h-full min-h-36 overflow-hidden aspect-16/9 justify-center items-center bg-black",
+      "flex border-1 relative m-0.5 p-0 w-full h-full min-h-36 overflow-hidden aspect-16/9 justify-center items-center bg-black",
+      "flex border-1 relative m-0.5 p-0 w-full h-full min-h-36 overflow-hidden aspect-16/9 justify-center items-center bg-black",
+      "flex border-1 relative m-0.5 p-0 w-full h-full min-h-36 overflow-hidden aspect-16/9 justify-center items-center bg-black",
     ],
   ];
 
@@ -112,7 +114,7 @@ export default function MakePostForm() {
                     key={index}
                     className={fileClassNames[files.length - 1][index]}
                   >
-                    <div className="">{FileWithFile(file)}</div>
+                    <div>{FileWithFile(file)}</div>
                     <button
                       type="button"
                       className="absolute top-0 right-0"

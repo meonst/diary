@@ -9,6 +9,7 @@ async function getSignedFileUrl(fileName: string) {
   const params = {
     Bucket: awsS3Bucket,
     Key: fileName,
+    body: ""
   };
 
   const command = new PutObjectCommand(params);
