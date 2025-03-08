@@ -4,14 +4,10 @@ import insertPost from "@/app/lib/dbAction/insertPost";
 import checkLog from "@/app/lib/debug/checkLog";
 import { DragEvent } from "react";
 import { useState } from "react";
-import { FileWithFile } from "@/app/ui/posts/file/file";
-import {
-  fileContainerClassNames,
-  fileClassNames,
-} from "@/app/ui/posts/file/fileClusterClassNames";
+import { FileContainerWithFiles } from "./file/fileContainer";
 export default function MakePostForm() {
   const [files, setFiles] = useState<File[]>([]);
-  const [content, setContent] = useState<string>("");
+  let content: string = "";
   function handleDragOver(event: DragEvent) {
     event.stopPropagation();
     event.preventDefault();
@@ -22,43 +18,45 @@ export default function MakePostForm() {
     event.stopPropagation();
     event.preventDefault();
 
-    const droppedFiles = event.dataTransfer.files;
-    if (files.length + droppedFiles.length > 4) {
+    const addedFiles: FileList = event.dataTransfer.files;
+    addFiles(addedFiles);
+  }
+
+  function addFilesWithButton(event: React.ChangeEvent<HTMLInputElement>) {
+    if (event.target.files == null) return;
+    const addedFiles: FileList = event.target.files;
+    addFiles(addedFiles);
+    event.target.value = "";
+  }
+
+  function addFiles(addedFiles: FileList) {
+    if (files.length + addedFiles.length > 4) {
       checkLog("you can only upload four files per post"); // going to add message
       return;
     }
-    if (droppedFiles.length == 0) return;
+    if (addedFiles.length == 0) return;
     const newFiles = [...files];
-    for (let i = 0; i < droppedFiles.length; i++) {
-      newFiles.push(droppedFiles[i]);
+    for (let i = 0; i < addedFiles.length; i++) {
+      newFiles.push(addedFiles[i]);
     }
     setFiles(newFiles);
   }
 
   function reset() {
-    setContent("");
     setFiles([]);
   }
+
   function insertPostWithData(formData: FormData) {
     if (files.length == 0 && content == "") return;
     insertPost(formData, files, content);
     reset();
   }
 
-  function addFilesWithButton(event: React.ChangeEvent<HTMLInputElement>) {
-    if (event.target.files == null) return;
-    const addedFiles: FileList = event.target.files;
-
-    if (files.length + addedFiles.length > 4) {
-      event.target.value = "";
-      return;
+  function removeFile(index: number) {
+    const newFiles: File[] = [];
+    for (let i = 0; i < files.length; i++) {
+      if (i != index) newFiles.push(files[i]);
     }
-
-    const newFiles = [...files];
-    for (let i = 0; i < addedFiles.length; i++) {
-      newFiles.push(addedFiles[i]);
-    }
-    event.target.value = "";
     setFiles(newFiles);
   }
 
@@ -66,67 +64,38 @@ export default function MakePostForm() {
     <div
       onDragOver={handleDragOver}
       onDrop={handleDrop}
-      className="h-fit min-h-32 w-full border-4 border-solid border-amber-500"
+      className="h-fit min-h-32 w-full border-2 border-t-0 border-gray-300"
     >
-      <div className="">
-        <form action={insertPostWithData}>
-          <div>
-            <textarea
-              value={content}
-              onChange={(event) => {
-                setContent(event.target.value);
-                event.target.style.height = "auto";
-                event.target.style.height = `${event.target.scrollHeight}px`;
-              }}
-              placeholder="What do you want to say?"
-              className="min-h-22 w-full resize-none overflow-hidden p-2"
-            ></textarea>
-
-            <div className={fileContainerClassNames[files.length - 1]}>
-              {/* <div className=""> */}
-              {files.map((file: File, index: number) => {
-                return (
-                  <div
-                    key={index}
-                    className={fileClassNames[files.length - 1][index]}
-                  >
-                    <div>{FileWithFile(file)}</div>
-                    <button
-                      type="button"
-                      className="absolute top-0 right-0"
-                      onClick={() => {
-                        const newFiles: File[] = [];
-                        for (let i = 0; i < files.length; i++) {
-                          if (i != index) newFiles.push(files[i]);
-                        }
-                        setFiles(newFiles);
-                      }}
-                    >
-                      {"❌" /* delete file */}
-                    </button>
-                  </div>
-                );
-              })}
-            </div>
-          </div>
-          <div className="flex w-full items-center">
-            <input
-              id="file-upload"
-              type="file"
-              onChange={addFilesWithButton}
-              hidden
-              multiple
-            ></input>
-            <label htmlFor="file-upload" className="pl-1">
-              🗂️
-            </label>
-            <div className="flex-grow"></div>
-            <button className="pr-1 text-right" type="submit">
-              ✍️
-            </button>
-          </div>
-        </form>
-      </div>
+      <form action={insertPostWithData}>
+        <div>
+          <textarea
+            onChange={(event) => {
+              content = event.target.value;
+              event.target.style.height = "auto";
+              event.target.style.height = `${event.target.scrollHeight}px`;
+            }}
+            placeholder="What do you want to say?"
+            className="max-h-66 min-h-22 w-full resize-none p-2"
+          ></textarea>
+          {FileContainerWithFiles(files, removeFile)}
+        </div>
+        <div className="flex w-full items-center">
+          <input
+            id="file-upload"
+            type="file"
+            onChange={addFilesWithButton}
+            hidden
+            multiple
+          ></input>
+          <label htmlFor="file-upload" className="pl-1">
+            🗂️
+          </label>
+          <div className="flex-grow"></div>
+          <button className="pr-1 text-right" type="submit">
+            ✍️
+          </button>
+        </div>
+      </form>
     </div>
   );
 }

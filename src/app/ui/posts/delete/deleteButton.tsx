@@ -1,7 +1,7 @@
 "use client";
 
 import { createPortal } from "react-dom";
-import DeleteConfirmation from "@/app/ui/posts/delete/deleteConfirmationModal";
+import DeleteConfirmationModal from "@/app/ui/posts/delete/deleteConfirmationModal";
 import { useState } from "react";
 
 export default function DeleteButton({ postId }: { postId: string }) {
@@ -13,11 +13,11 @@ export default function DeleteButton({ postId }: { postId: string }) {
           setShowModal(true);
         }}
       >
-        delete
+        Delete Post
       </button>
       {showModal &&
         createPortal(
-          <DeleteConfirmation
+          <DeleteConfirmationModal
             postId={postId}
             onClose={() => {
               setShowModal(false);

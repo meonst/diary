@@ -14,22 +14,25 @@ export const fileContainerClassNames: ClassName[] = [
   concatWithSpace(fileContainerCommonClassName, fileContainerFour),
 ];
 
-
 const fileOneOfOne: ClassName = "rounded-md ml-0.5 mr-0.5";
 
 const fileOneOfTwo: ClassName = "rounded-l-md ml-0.5 mr-0.5";
 const fileTwoOfTwo: ClassName = "rounded-r-md ml-0.5 mr-0.5";
 
-const fileOneOfThree: ClassName = "row-span-2 rounded-l-md h-full ml-0.5 mr-0.5";
-const fileTwoOfThree: ClassName = "row-span-1 rounded-tr-md ml-0.5 mr-0.5 mb-0.5";
-const fileThreeOfThree: ClassName = "row-span-1 rounded-br-md ml-0.5 mr-0.5 mt-0.5";
+const fileOneOfThree: ClassName =
+  "row-span-2 rounded-l-md h-full ml-0.5 mr-0.5";
+const fileTwoOfThree: ClassName =
+  "row-span-1 rounded-tr-md ml-0.5 mr-0.5 mb-0.5";
+const fileThreeOfThree: ClassName =
+  "row-span-1 rounded-br-md ml-0.5 mr-0.5 mt-0.5";
 
 const fileOneOfFour: ClassName = "rounded-tl-md ml-0.5 mr-0.5 mb-0.5";
 const fileTwoOfFour: ClassName = "rounded-tr-md ml-0.5 mr-0.5 mb-0.5";
 const fileThreeOfFour: ClassName = "rounded-bl-md ml-0.5 mr-0.5 mt-0.5";
 const fileFourOfFour: ClassName = "rounded-br-md ml-0.5 mr-0.5 mt-0.5";
 
-const fileCommonClassName: ClassName = "items-center justify-center flex relative border-1 overflow-hidden bg-black text-white";
+const fileCommonClassName: ClassName =
+  "items-center justify-center flex relative border-1 overflow-hidden bg-black text-white";
 export const fileClassNames = [
   [concatWithSpace(fileCommonClassName, fileOneOfOne)],
   [

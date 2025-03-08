@@ -1,13 +1,13 @@
-import { PostData } from "@/app/lib/definitions";
 import React from "react";
-import { FileWithName } from "@/app/ui/posts/file/file";
-import { dateString } from "@/app/lib/misc/time";
-import DeleteButton from "@/app/ui/posts/delete/deleteButton";
-import {
-  fileContainerClassNames,
-  fileClassNames,
-} from "@/app/ui/posts/file/fileClusterClassNames";
-export default function PostSimple({ postData }: { postData: PostData }) {
+import { PostData } from "@/app/lib/definitions";
+import { monthDayString } from "@/app/lib/misc/time";
+import { FileContainerWithNames } from "@/app/ui/posts/file/fileContainer";
+import DeleteButton from "./delete/deleteButton";
+import { verifySession } from "@/app/lib/authentication/dal";
+
+export default async function PostSimple({ postData }: { postData: PostData }) {
+  const session = await verifySession();
+  const isAdmin = session.isAuth && session.userRole == "admin";
   const time = postData.time;
   const content = postData.content;
   const id = postData.id;
@@ -24,19 +24,14 @@ export default function PostSimple({ postData }: { postData: PostData }) {
   if (fileNameFour != "") files.push(fileNameFour);
 
   return (
-    <div id={id} className="border-2 border-green-500">
-      <div className="">{content}</div>
-      <div className={`${fileContainerClassNames[files.length - 1]}`}>
-        {files.map((fileName: string, index: number) => {
-          return (
-            <div key={index} className={`${fileClassNames[index]}`}>
-              <FileWithName fileName={fileName} />
-            </div>
-          );
-        })}
+    <div id={id} className="border-2 border-t-0 border-gray-300">
+      <div className="p-0.5">{content}</div>
+      {FileContainerWithNames(files)}
+      <div className="flex">
+        <div className="p-0.5">{monthDayString(time)}</div>
+        <div className="flex-grow"></div>
+        <div className="p-0.5">{isAdmin && <DeleteButton postId={id} />}</div>
       </div>
-      <div>{dateString(time)}</div>
-      <DeleteButton postId={id} />
     </div>
   );
 }

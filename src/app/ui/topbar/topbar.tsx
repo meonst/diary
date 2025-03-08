@@ -6,10 +6,10 @@ export default async function Topbar() {
   const session = await verifySession();
 
   return (
-    <div className="items-center border-b-4 border-b-blue-500">
+    <div className="relative items-center border-b-2 border-gray-300 p-2">
       <div className="w-full text-center text-3xl">{"Minhyeok's Diary"}</div>
 
-      <div className="text-center">
+      <div className="absolute top-5 right-0 text-center">
         {session.isAuth ? (
           <LogoutForm />
         ) : (

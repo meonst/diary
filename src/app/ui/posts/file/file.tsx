@@ -18,7 +18,7 @@ export async function FileWithName({ fileName }: { fileName: string }) {
   return FileByType(fileName, fileUrl, fileType);
 }
 
-export function FileWithFile(file: File) {
+export function FileWithFile({ file }: { file: File }) {
   const fileType = file.type.split("/")[0];
   const fileUrl: string = URL.createObjectURL(file);
   return FileByType(file.name, fileUrl, fileType);
@@ -45,7 +45,7 @@ function DefaultFile({
   fileName: string;
 }) {
   return (
-    <div className="row-span-2 flex h-full w-full items-center justify-center overflow-hidden">
+    <div className="flex h-full w-full items-center justify-center overflow-hidden">
       <Link href={fileUrl}>{fileName}</Link>
     </div>
   );
