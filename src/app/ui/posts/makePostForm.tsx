@@ -87,11 +87,11 @@ export default function MakePostForm() {
             hidden
             multiple
           ></input>
-          <label htmlFor="file-upload" className="pl-1">
+          <label htmlFor="file-upload" className="pl-2 text-xl">
             🗂️
           </label>
           <div className="flex-grow"></div>
-          <button className="pr-1 text-right" type="submit">
+          <button className="pr-2 text-xl text-right" type="submit">
             ✍️
           </button>
         </div>

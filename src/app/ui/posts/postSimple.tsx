@@ -3,11 +3,8 @@ import { PostData } from "@/app/lib/definitions";
 import { monthDayString } from "@/app/lib/misc/time";
 import { FileContainerWithNames } from "@/app/ui/posts/file/fileContainer";
 import DeleteButton from "./delete/deleteButton";
-import { verifySession } from "@/app/lib/authentication/dal";
 
-export default async function PostSimple({ postData }: { postData: PostData }) {
-  const session = await verifySession();
-  const isAdmin = session.isAuth && session.userRole == "admin";
+export default function PostSimple({ postData, isAdmin }: { postData: PostData, isAdmin: boolean }) {
   const time = postData.time;
   const content = postData.content;
   const id = postData.id;
@@ -25,12 +22,12 @@ export default async function PostSimple({ postData }: { postData: PostData }) {
 
   return (
     <div id={id} className="border-2 border-t-0 border-gray-300">
-      <div className="p-0.5">{content}</div>
+      <div className="p-2 whitespace-pre-line">{content}</div>
       {FileContainerWithNames(files)}
       <div className="flex">
-        <div className="p-0.5">{monthDayString(time)}</div>
+        <div className="p-2">{monthDayString(time)}</div>
         <div className="flex-grow"></div>
-        <div className="p-0.5">{isAdmin && <DeleteButton postId={id} />}</div>
+        <div className="p-2">{isAdmin && <DeleteButton postId={id} />}</div>
       </div>
     </div>
   );

@@ -1,4 +1,4 @@
-make sure data you get from the database is the same type as the one you want!!!!!
+make sure data you get from the database is the same type as the one you want!!!!! 
 
 postgres naming convention snake_case for tables and columns 
 
@@ -12,3 +12,9 @@ pnpm exec prettier . --write: for running preetier
 
 emojis I use
 🗑️🗂️❌✍️
+
+
+when bcrypt breaks
+npm install node-gyp -g
+npm install bcrypt -g
+npm install bcrypt --save

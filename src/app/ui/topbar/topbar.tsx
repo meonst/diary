@@ -6,9 +6,8 @@ export default async function Topbar() {
   const session = await verifySession();
 
   return (
-    <div className="relative items-center border-b-2 border-gray-300 p-2">
-      <div className="w-full text-center text-3xl">{"Minhyeok's Diary"}</div>
-
+    <div className="relative flex items-center justify-center border-b-2 border-gray-300 p-2">
+      <Link className="text-center text-3xl" href="/posts">{"Minhyeok's Diary"}</Link>
       <div className="absolute top-5 right-0 text-center">
         {session.isAuth ? (
           <LogoutForm />
