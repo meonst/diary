@@ -1,36 +1,37 @@
 import React from "react";
 import { fileContainerClassNames, fileClassNames } from "@/app/lib/classNames";
-import { FileWithName, FileWithFile } from "@/app/ui/posts/file/file";
+import { FileEssential } from "@/app/lib/definitions";
+import { File } from "@/app/ui/posts/file/file";
 
-export function FileContainerWithNames(files: string[]) {
+export function FileContainer(files: FileEssential[]) {
   return (
     <div className={fileContainerClassNames[files.length - 1]}>
-      {files.map((fileName: string, index: number) => {
+      {files.map((file: FileEssential, index: number) => {
         return (
           <div
             key={index}
             className={`${fileClassNames[files.length - 1][index]}`}
           >
-            <FileWithName fileName={fileName} />
+            <File file={file} />
           </div>
         );
       })}
     </div>
   );
 }
-export function FileContainerWithFiles(
-  files: File[],
+export function FileContainerWithDelete(
+  files: FileEssential[],
   removeFile: (index: number) => void,
 ) {
   return (
     <div className={fileContainerClassNames[files.length - 1]}>
-      {files.map((file: File, index: number) => {
+      {files.map((file: FileEssential, index: number) => {
         return (
           <div
             key={index}
             className={`${fileClassNames[files.length - 1][index]}`}
           >
-            <FileWithFile file={file} />
+            <File file={file} />
             <button
               type="button"
               className="absolute top-1 right-1"

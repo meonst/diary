@@ -4,10 +4,10 @@ export type PostData = {
   id: string;
   content: string;
   time: Date;
-  fileNameOne: string;
-  fileNameTwo: string;
-  fileNameThree: string;
-  fileNameFour: string;
+  fileOne: FileEssential;
+  fileTwo: FileEssential;
+  fileThree: FileEssential;
+  fileFour: FileEssential;
 };
 
 export const LoginFormSchema = z.object({
@@ -43,3 +43,15 @@ export type SignUpFormState =
   | undefined;
 
 export type ClassName = string;
+
+export const FileTypes = {
+  Other: 0,
+  Image: 1,
+  Video: 2,
+};
+
+export type FileEssential = {
+  url: string;
+  name: string;
+  type: number;
+};

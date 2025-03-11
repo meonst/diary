@@ -1,29 +1,37 @@
 import React from "react";
 import { PostData } from "@/app/lib/definitions";
 import { monthDayString } from "@/app/lib/misc/time";
-import { FileContainerWithNames } from "@/app/ui/posts/file/fileContainer";
+import { FileContainer } from "@/app/ui/posts/file/fileContainer";
 import DeleteButton from "./delete/deleteButton";
-
-export default function PostSimple({ postData, isAdmin }: { postData: PostData, isAdmin: boolean }) {
+import { FileEssential } from "@/app/lib/definitions";
+export default function PostSimple({
+  postData,
+  isAdmin,
+}: {
+  postData: PostData;
+  isAdmin: boolean;
+}) {
   const time = postData.time;
   const content = postData.content;
   const id = postData.id;
 
-  const fileNameOne = postData.fileNameOne;
-  const fileNameTwo = postData.fileNameTwo;
-  const fileNameThree = postData.fileNameThree;
-  const fileNameFour = postData.fileNameFour;
+  const fileOne: FileEssential = postData.fileOne;
+  const fileTwo: FileEssential = postData.fileTwo;
+  const fileThree: FileEssential = postData.fileThree;
+  const fileFour: FileEssential = postData.fileFour;
 
-  const files: string[] = [];
-  if (fileNameOne != "") files.push(fileNameOne);
-  if (fileNameTwo != "") files.push(fileNameTwo);
-  if (fileNameThree != "") files.push(fileNameThree);
-  if (fileNameFour != "") files.push(fileNameFour);
+  const files: FileEssential[] = [];
+  if (fileOne.name != "") files.push(fileOne);
+  if (fileTwo.name != "") files.push(fileTwo);
+  if (fileThree.name != "") files.push(fileThree);
+  if (fileFour.name != "") files.push(fileFour);
 
   return (
     <div id={id} className="border-2 border-t-0 border-gray-300">
-      <div className="p-2 whitespace-pre-line">{content}</div>
-      {FileContainerWithNames(files)}
+      <p className="overflow-hidden p-2 break-words whitespace-pre-line">
+        {content}
+      </p>
+      {FileContainer(files)}
       <div className="flex">
         <div className="p-2">{monthDayString(time)}</div>
         <div className="flex-grow"></div>

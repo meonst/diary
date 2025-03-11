@@ -1,11 +1,8 @@
 "use client";
-export default function VideoFile({
-  fileUrl,
-  fileName,
-}: {
-  fileUrl: string;
-  fileName: string;
-}) {
+
+import { FileEssential } from "@/app/lib/definitions";
+
+export default function VideoFile({ file }: { file: FileEssential }) {
   return (
     <div className="flex aspect-16/9 h-full w-full items-center justify-center overflow-hidden">
       <video
@@ -16,7 +13,7 @@ export default function VideoFile({
           event.currentTarget.removeAttribute("controls");
         }}
       >
-        <source src={fileUrl}></source>
+        <source src={file.url}></source>
       </video>
     </div>
   );

@@ -1,10 +1,12 @@
 "use client";
-import React, { ChangeEvent } from "react";
+import React from "react";
 import insertPost from "@/app/lib/dbAction/insertPost";
 import checkLog from "@/app/lib/debug/checkLog";
 import { DragEvent } from "react";
 import { useState } from "react";
-import { FileContainerWithFiles } from "./file/fileContainer";
+import { FileContainerWithDelete } from "./file/fileContainer";
+import { FileEssential } from "@/app/lib/definitions";
+import getFileTypeFromFileName from "@/app/lib/misc/fileType";
 export default function MakePostForm() {
   const [files, setFiles] = useState<File[]>([]);
   let content: string = "";
@@ -36,6 +38,7 @@ export default function MakePostForm() {
     }
     if (addedFiles.length == 0) return;
     const newFiles = [...files];
+
     for (let i = 0; i < addedFiles.length; i++) {
       newFiles.push(addedFiles[i]);
     }
@@ -60,14 +63,27 @@ export default function MakePostForm() {
     setFiles(newFiles);
   }
 
+  function FileContainer(files: File[]) {
+    const fileEssentials: FileEssential[] = [];
+    files.forEach((file: File) => {
+      const fileEssential: FileEssential = {
+        name: file.name,
+        url: URL.createObjectURL(file),
+        type: getFileTypeFromFileName(file.name),
+      };
+      fileEssentials.push(fileEssential);
+    });
+    return FileContainerWithDelete(fileEssentials, removeFile);
+  }
+
   return (
     <div
       onDragOver={handleDragOver}
       onDrop={handleDrop}
-      className="h-fit min-h-32 w-full border-2 border-t-0 border-gray-300"
+      className="h-fit min-h-32 w-full max-w-xl border-2 border-t-0 border-gray-300 sm:w-xl"
     >
-      <form action={insertPostWithData}>
-        <div>
+      <form action={insertPostWithData} className="">
+        <div className="w-full">
           <textarea
             onChange={(event) => {
               content = event.target.value;
@@ -77,7 +93,7 @@ export default function MakePostForm() {
             placeholder="What do you want to say?"
             className="max-h-66 min-h-22 w-full resize-none p-2"
           ></textarea>
-          {FileContainerWithFiles(files, removeFile)}
+          {FileContainer(files)}
         </div>
         <div className="flex w-full items-center">
           <input
@@ -91,7 +107,7 @@ export default function MakePostForm() {
             🗂️
           </label>
           <div className="flex-grow"></div>
-          <button className="pr-2 text-xl text-right" type="submit">
+          <button className="pr-2 text-right text-xl" type="submit">
             ✍️
           </button>
         </div>

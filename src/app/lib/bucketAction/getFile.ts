@@ -4,6 +4,7 @@ import { s3 } from "./client";
 const awsS3Bucket = process.env.MY_AWS_BUCKET;
 
 export async function getSignedFileUrl(fileName: string) {
+  if (fileName == "") return "";
   const params = {
     Bucket: awsS3Bucket,
     Key: fileName,
@@ -16,36 +17,4 @@ export async function getSignedFileUrl(fileName: string) {
     expiresIn: 3600,
   });
   return url;
-}
-
-export async function getHead(fileName: string) {
-  const params = {
-    Bucket: awsS3Bucket,
-    Key: fileName,
-    body: "",
-  };
-  const command = new HeadObjectCommand(params);
-  try {
-    const response = await s3.send(command);
-    if (!response) return;
-    return response;
-  } catch (err) {
-    console.log(err);
-  }
-}
-
-export async function getFileWithName(fileName: string) {
-  const params = {
-    Bucket: awsS3Bucket,
-    Key: fileName,
-    body: "",
-  };
-  const command = new GetObjectCommand(params);
-  try {
-    const response = await s3.send(command);
-    if (!response) return;
-    return response;
-  } catch (err) {
-    console.log(err);
-  }
 }

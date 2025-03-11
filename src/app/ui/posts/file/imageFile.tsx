@@ -1,19 +1,14 @@
 "use client";
+import { FileEssential } from "@/app/lib/definitions";
 import Image from "next/image";
 import Link from "next/link";
-export default function ImageFile({
-  fileUrl,
-  fileName,
-}: {
-  fileUrl: string;
-  fileName: string;
-}) {
+export default function ImageFile({ file }: { file: FileEssential }) {
   return (
     <div className="flex aspect-16/9 h-full w-full items-center justify-center overflow-hidden">
-      <Link href={fileUrl}>
+      <Link href={file.url}>
         <Image
-          src={fileUrl}
-          alt={fileName}
+          src={file.url}
+          alt={file.name}
           width={1920}
           height={1080}
           className="object-cover object-center"

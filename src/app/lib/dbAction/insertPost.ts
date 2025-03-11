@@ -17,7 +17,6 @@ export default async function insertPost(
     fileNames.push(await uploadFile(files[i]));
   }
   while (fileNames.length < 4) fileNames.push("");
-  console.log(fileNames);
 
   const time = currentTime();
   const queryConfig: QueryConfig = {
