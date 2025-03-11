@@ -11,7 +11,10 @@ export default async function Page() {
   const isAdmin = session.isAuth && session.userRole == "admin";
   return (
     <div className="flex columns-3 flex-col items-center">
-      <div className="xs:w-xl max-w-xl">{isAdmin && <MakePostForm />}</div>
+      <div className="xs:w-xl max-w-xl">
+        {isAdmin && <MakePostForm />}
+        <LoadMore isAdmin={isAdmin}></LoadMore>
+      </div>
     </div>
   );
 }

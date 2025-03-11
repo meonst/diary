@@ -15,7 +15,7 @@ export default function LoadMore({ isAdmin }: { isAdmin: boolean }) {
     if (inView && !reachedBottom) {
       getPostData(page).then((res) => {
         setPostData([...postData, ...res]);
-        if (res.length == 0) reachedBottom = true;
+        if (res.length < 30) reachedBottom = true;
         page++;
       });
     }
