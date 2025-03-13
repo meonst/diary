@@ -3,8 +3,6 @@
 3. cache the post data so i don't have to get it every time
 4. add tests
 5. i want a drag and drop feature to change the order of the files before it is posted
-6. add doomscrolling
-
 
 saving file data in db
 

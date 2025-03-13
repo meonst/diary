@@ -6,7 +6,8 @@ export function currentTime(): string {
   return dateString(new Date());
 }
 
-export function dateString(date: Date): string {
+/** yyyy-MM-dd hh:mm:ss */
+export function dateAndTimetring(date: Date): string {
   const year: number = date.getFullYear();
   const month: string = zeroPadding(date.getMonth() + 1);
   const day: string = zeroPadding(date.getDate());
@@ -17,6 +18,16 @@ export function dateString(date: Date): string {
   return time;
 }
 
+/** yyyy-MM-dd */
+export function dateString(date: Date): string {
+  const year: number = date.getFullYear();
+  const month: string = zeroPadding(date.getMonth() + 1);
+  const day: string = zeroPadding(date.getDate());
+  const time: string = `${year}-${month}-${day}`;
+  return time;
+}
+
+/** yyyy년 MM월 dd일 hh시 mm분 */
 export function shortDateString(date: Date): string {
   const year: number = date.getFullYear();
   const month: string = zeroPadding(date.getMonth() + 1);
@@ -28,6 +39,7 @@ export function shortDateString(date: Date): string {
   return time;
 }
 
+/** MM월 dd일 */
 export function monthDayString(date: Date): string {
   const year: number = date.getFullYear();
   const month: string = zeroPadding(date.getMonth() + 1);
