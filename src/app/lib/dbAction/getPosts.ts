@@ -7,19 +7,8 @@ import getFileTypeFromFileName from "@/app/lib/misc/fileType";
 import { z } from "zod";
 
 const postsPerPage = 30;
-export async function getPostData(page: number): Promise<PostData[]> {
-  const offset: number = page * postsPerPage;
-  const queryConfig: QueryConfig = {
-    text: `SELECT id, content, time, file_name_one, file_name_two, file_name_three, file_name_four FROM posts WHERE hidden = '0' ORDER BY time DESC OFFSET $1 LIMIT $2`,
-    values: [offset, postsPerPage],
-  };
 
-  const postRows: QueryResult = await sql.query(queryConfig);
-  const postDataArray: PostData[] = await getPostDataArray(postRows);
-  return postDataArray;
-}
-
-export async function getPostDataSearch(
+export async function getPostData(
   formData: FormData,
   page: number,
 ): Promise<PostData[]> {
@@ -58,12 +47,12 @@ export async function getPostDataSearch(
     queryText = queryText.concat(` AND content LIKE $${variableCount}`);
     values.push("%".concat(searchTextValidate.data.searchText).concat("%"));
   }
-  if (startDateValidate.success) {
+  if (startDateValidate.success && startDateValidate.data.startDate != "") {
     variableCount++;
     queryText = queryText.concat(` AND $${variableCount} < time`);
     values.push(startDateValidate.data.startDate);
   }
-  if (endDateValidate.success) {
+  if (endDateValidate.success && endDateValidate.data.endDate != "") {
     variableCount++;
     queryText = queryText.concat(` AND time < $${variableCount}`);
     values.push(endDateValidate.data.endDate);
@@ -77,14 +66,13 @@ export async function getPostDataSearch(
   const offset: number = page * postsPerPage;
   values.push(offset);
   values.push(postsPerPage);
-
+  console.log(queryText);
   const queryConfig: QueryConfig = {
     text: queryText,
     values: values,
   };
   const postRows: QueryResult = await sql.query(queryConfig);
   const postDataArray: PostData[] = await getPostDataArray(postRows);
-  // const postDataArray: PostData[] = [];
   return postDataArray;
 }
 

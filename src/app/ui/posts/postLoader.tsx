@@ -1,5 +1,4 @@
 "use client";
-import Image from "next/image";
 import { useInView } from "react-intersection-observer";
 import { useEffect, useState } from "react";
 import { getPostData } from "@/app/lib/dbAction/getPosts";
@@ -8,14 +7,16 @@ import PostSimple from "@/app/ui/posts/postSimple";
 
 let page = 0;
 let reachedBottom = false;
-export default function LoadMore({ isAdmin }: { isAdmin: boolean }) {
+export default function PostLoader({ formData, isAdmin }: { formData: FormData, isAdmin: boolean }) {
+
   const { ref, inView } = useInView();
   const [postData, setPostData] = useState<PostData[]>([]);
+  
   useEffect(() => {
     if (inView && !reachedBottom) {
-      getPostData(page).then((res) => {
+      getPostData(formData, page).then((res) => {
         setPostData([...postData, ...res]);
-        if (res.length < 30) reachedBottom = true;
+        // if (res.length < 30) reachedBottom = true;
         page++;
       });
     }

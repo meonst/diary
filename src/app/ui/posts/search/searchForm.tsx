@@ -1,21 +1,20 @@
 "use client";
-import { getPostDataSearch } from "@/app/lib/dbAction/getPosts";
-import { z } from "zod";
 import { dateString } from "@/app/lib/misc/time";
-import { useState } from "react";
-import { PostData } from "@/app/lib/definitions";
-import PostSimple from "@/app/ui/posts/postSimple";
+import { useState, useEffect } from "react";
+import PostLoader from "@/app/ui/posts/postLoader";
 export default function SearchForm({ isAdmin }: { isAdmin: boolean }) {
-  let page = 0;
-  const [postData, setPostData] = useState<PostData[]>([]);
+  const [formData, setFormData] = useState<FormData>(new FormData());
+  let shouldReset = false;
   return (
     <div>
       <form
         className="grid grid-cols-2"
-        action={async (formData: FormData) => {
-          const data = await getPostDataSearch(formData, page);
-          setPostData(data);
-          page++;
+        action={(newFormData: FormData) => {
+          console.log(newFormData.get('searchText'));
+          console.log(newFormData.get('startDate'));
+          console.log(newFormData.get('endDate'));
+          console.log(newFormData.get('hasFile'));
+          setFormData(newFormData);
         }}
       >
         <input
@@ -29,7 +28,7 @@ export default function SearchForm({ isAdmin }: { isAdmin: boolean }) {
             type="date"
             name="startDate"
             className="border-1"
-            defaultValue={dateString(new Date())}
+            defaultValue={""}
           />
           ~
           <input
@@ -51,9 +50,7 @@ export default function SearchForm({ isAdmin }: { isAdmin: boolean }) {
           submit
         </button>
       </form>
-      {postData.map((postData: PostData, index: number) => {
-        return <PostSimple postData={postData} isAdmin={isAdmin} key={index} />;
-      })}
+      <PostLoader formData={formData} isAdmin={isAdmin}></PostLoader>
     </div>
   );
 }

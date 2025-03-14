@@ -3,7 +3,7 @@ function zeroPadding(timeNumber: number): string {
 }
 
 export function currentTime(): string {
-  return dateString(new Date());
+  return dateAndTimetring(new Date());
 }
 
 /** yyyy-MM-dd hh:mm:ss */
