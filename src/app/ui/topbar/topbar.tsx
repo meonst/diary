@@ -10,7 +10,9 @@ export default async function Topbar() {
       <Link className="text-center text-3xl" href="/posts">
         {"Minhyeok's Diary"}
       </Link>
-      <div className="absolute top-5 right-0 text-center">
+
+      <div className="absolute top-5 right-0 flex text-center">
+        <Link href="/search" className="pr-3">Search</Link>
         {session.isAuth ? (
           <LogoutForm />
         ) : (

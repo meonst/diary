@@ -50,3 +50,10 @@ export function monthDayString(date: Date): string {
   const time: string = `${month}월 ${day}일`;
   return time;
 }
+
+/** get the date of n days before from today */
+export function daysBefore(days: number): Date {
+  const date = new Date();
+  date.setDate(date.getDate() - days);
+  return date;
+}

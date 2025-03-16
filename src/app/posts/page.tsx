@@ -9,7 +9,7 @@ export default async function Page() {
     <div className="flex columns-3 flex-col items-center">
       <div className="xs:w-xl max-w-xl">
         {isAdmin && <MakePostForm />}
-        <PostLoader formData={new FormData()} isAdmin={isAdmin}></PostLoader>
+        <PostLoader isAdmin={isAdmin}></PostLoader>
       </div>
     </div>
   );
