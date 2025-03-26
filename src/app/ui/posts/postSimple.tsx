@@ -28,9 +28,11 @@ export default function PostSimple({
 
   return (
     <div id={id} className="border-2 border-t-0 border-gray-300">
-      <p className="overflow-hidden p-2 break-words whitespace-pre-line">
-        {content}
-      </p>
+      {content != "" && (
+        <p className="overflow-hidden p-2 break-words whitespace-pre-line">
+          {content}
+        </p>
+      )}
       {FileContainer(files)}
       <div className="flex">
         <div className="p-2">{monthDayString(time)}</div>

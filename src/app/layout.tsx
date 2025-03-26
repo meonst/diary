@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "@/app/globals.css";
 import Topbar from "./ui/topbar/topbar";
-
+import Provider from "@/app/ui/provider";
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
@@ -24,12 +24,14 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="overflow-y-scroll">
+    <html lang="en" className="overflow-y-scroll" suppressHydrationWarning>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} antialiased `}
       >
-        <Topbar />
-        {children}
+        <Provider>
+          <Topbar />
+          {children}
+        </Provider>
       </body>
     </html>
   );

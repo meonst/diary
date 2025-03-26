@@ -66,7 +66,6 @@ export async function getPostData(
   const offset: number = page * postsPerPage;
   values.push(offset);
   values.push(postsPerPage);
-  console.log(queryText);
   const queryConfig: QueryConfig = {
     text: queryText,
     values: values,

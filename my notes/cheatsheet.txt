@@ -11,8 +11,8 @@ pnpm lint: for linting
 pnpm exec prettier . --write: for running preetier
 
 emojis I use
-🗑️🗂️❌✍️
-
+🗑️🗂️❌✍️🌀
+🌙☀️
 
 when bcrypt breaks
 npm install node-gyp -g

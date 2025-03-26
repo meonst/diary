@@ -1,15 +1,10 @@
 "use server";
-import { z } from "zod";
 import { QueryConfig, sql } from "@vercel/postgres";
 import { uploadFile } from "@/app/lib/bucketAction/uploadFile";
 import { currentTime } from "@/app/lib/misc/time";
 import { verifySession } from "@/app/lib/authentication/dal";
 
-export default async function insertPost(
-  formData: FormData,
-  files: File[],
-  content: string,
-) {
+export default async function insertPost(files: File[], content: string) {
   const session = await verifySession();
   if (!session || !session.isAuth || session.userRole != "admin") return;
   const fileNames: string[] = [];

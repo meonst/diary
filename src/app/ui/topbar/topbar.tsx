@@ -2,6 +2,7 @@ import Link from "next/link";
 import React from "react";
 import { verifySession } from "@/app/lib/authentication/dal";
 import LogoutForm from "../authenticate/logoutForm";
+import ThemeToggleButton from "@/app/ui/topbar/themeToggleButton";
 export default async function Topbar() {
   const session = await verifySession();
 
@@ -12,7 +13,10 @@ export default async function Topbar() {
       </Link>
 
       <div className="absolute top-5 right-0 flex text-center">
-        <Link href="/search" className="pr-3">Search</Link>
+        <ThemeToggleButton />
+        <Link href="/search" className="pr-3">
+          Search
+        </Link>
         {session.isAuth ? (
           <LogoutForm />
         ) : (

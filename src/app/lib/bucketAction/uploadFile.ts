@@ -32,7 +32,6 @@ export async function uploadFile(file: File): Promise<string> {
         "Content-type": file.type,
       },
     });
-    console.log(newName);
     return newName;
   } catch (err) {
     return "";

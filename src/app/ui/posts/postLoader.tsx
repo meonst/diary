@@ -4,7 +4,7 @@ import { SetStateAction, useEffect, useState } from "react";
 import { getPostData } from "@/app/lib/dbAction/getPosts";
 import { PostData } from "@/app/lib/definitions";
 import PostSimple from "@/app/ui/posts/postSimple";
-
+import Loading from "@/app/ui/loading";
 export default function PostLoader({ isAdmin }: { isAdmin: boolean }) {
   const [postData, setPostData] = useState<PostData[]>([]);
   const [reachedBottom, setReachedBottom] = useState<boolean>(false);
@@ -28,7 +28,7 @@ export default function PostLoader({ isAdmin }: { isAdmin: boolean }) {
       })}
       {!reachedBottom && (
         <div ref={ref} className="text-center">
-          Loading
+          <Loading></Loading>
         </div>
       )}
       {reachedBottom && (
@@ -90,7 +90,7 @@ export function PostLoaderControlledByParent({
       })}
       {!reachedBottom && (
         <div ref={ref} className="text-center">
-          Loading
+          <Loading></Loading>
         </div>
       )}
       {reachedBottom && (

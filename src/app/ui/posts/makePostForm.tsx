@@ -7,9 +7,11 @@ import { useState } from "react";
 import { FileContainerWithDelete } from "./file/fileContainer";
 import { FileEssential } from "@/app/lib/definitions";
 import getFileTypeFromFileName from "@/app/lib/misc/fileType";
+import Loading from "@/app/ui/loading";
+let content: string = "";
 export default function MakePostForm() {
   const [files, setFiles] = useState<File[]>([]);
-  let content: string = "";
+  const [uploading, setUploading] = useState<boolean>(false);
   function handleDragOver(event: DragEvent) {
     event.stopPropagation();
     event.preventDefault();
@@ -49,10 +51,14 @@ export default function MakePostForm() {
     setFiles([]);
   }
 
-  function insertPostWithData(formData: FormData) {
-    if (files.length == 0 && content == "") return;
-    insertPost(formData, files, content);
+  function insertPostWithData() {
+    if (files.length == 0 && content == "") {
+      setUploading(false);
+      return;
+    }
+    insertPost(files, content);
     reset();
+    setUploading(false);
   }
 
   function removeFile(index: number) {
@@ -80,9 +86,14 @@ export default function MakePostForm() {
     <div
       onDragOver={handleDragOver}
       onDrop={handleDrop}
-      className="h-fit min-h-32 w-full max-w-xl border-2 border-t-0 border-gray-300 sm:w-xl"
+      className="h-fit min-h-32 w-full max-w-xl border-2 border-t-0 border-gray-300 sm:w-xl relative"
     >
-      <form action={insertPostWithData} className="">
+      {uploading && <div
+        className="absolute w-full h-full bg-gray-800/20 top-0 left-0 flex items-center justify-center"
+      >
+        <Loading></Loading>
+      </div>}
+      <form action={insertPostWithData} onSubmit={() => { setUploading(true) }} className="">
         <div className="w-full">
           <textarea
             onChange={(event) => {
@@ -100,6 +111,7 @@ export default function MakePostForm() {
             id="file-upload"
             type="file"
             onChange={addFilesWithButton}
+            disabled={uploading}
             hidden
             multiple
           ></input>
@@ -107,7 +119,7 @@ export default function MakePostForm() {
             🗂️
           </label>
           <div className="flex-grow"></div>
-          <button className="pr-2 text-right text-xl" type="submit">
+          <button className="pr-2 text-right text-xl" type="submit" disabled={uploading}>
             ✍️
           </button>
         </div>

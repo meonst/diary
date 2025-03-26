@@ -1,8 +1,8 @@
 1. add comments <- not priority
-2. add a search function
-3. cache the post data so i don't have to get it every time
-4. add tests
-5. i want a drag and drop feature to change the order of the files before it is posted
+2. cache the post data so i don't have to get it every time
+3. add tests
+4. select a color theme and apply it OR make it depend on a color so it works with any color the user chooses
+5. add styling for different situations, size, state, maybe time
 
 saving file data in db
 
