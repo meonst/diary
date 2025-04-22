@@ -1,5 +1,5 @@
 import { db } from "@vercel/postgres";
-import { verifySession } from "@/app/lib/authentication/dal";
+import { verifyAdmin } from "@/app/lib/authentication/dal";
 const client = await db.connect();
 
 async function createPostsTable() {
@@ -37,20 +37,33 @@ async function createFilesTable() {
   return;
 }
 
+async function createCommentsTable() {
+  await client.sql`CREATE TABLE IF NOT EXISTS comments (
+    id UUID DEFAULT uuid_generate_v4() PRIMARY KEY,
+    parentId VARCHAR,
+    content VARCHAR,
+    time TIMESTAMP NOT NULL,
+    hidden VARCHAR NOT NULL,
+    authorId VARCHAR,
+    authorEmail VARCHAR
+  )`;
+  return;
+}
 async function createUuidExtension() {
   await client.sql`CREATE EXTENSION IF NOT EXISTS "uuid-ossp"`;
   return;
 }
 
 export async function GET() {
-  const session = await verifySession();
-  if (session.userRole != "admin") return;
+  const isAdmin = await verifyAdmin();
+  if (!isAdmin) return;
   try {
     await client.sql`BEGIN`;
     await createUuidExtension();
     await createPostsTable();
     await createFilesTable();
     await createUsersTable();
+    await createCommentsTable();
     await client.sql`COMMIT`;
 
     return Response.json({ message: "Database seeded successfully" });

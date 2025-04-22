@@ -75,6 +75,19 @@ export async function getPostData(
   return postDataArray;
 }
 
+export async function getPostDataWithId(id: string): Promise<PostData[]> {
+  const queryText =
+    "SELECT id, content, time, file_name_one, file_name_two, file_name_three, file_name_four FROM posts WHERE id = $1";
+  const values = [id];
+  const queryConfig: QueryConfig = {
+    text: queryText,
+    values: values,
+  };
+  const postRows: QueryResult = await sql.query(queryConfig);
+  const postDataArray: PostData[] = await getPostDataArray(postRows);
+  return postDataArray;
+}
+
 async function getPostDataArray(postRows: QueryResult) {
   const postDataArray: PostData[] = [];
   for (let i = 0; i < postRows.rows.length; i++) {

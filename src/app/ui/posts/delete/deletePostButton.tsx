@@ -1,25 +1,28 @@
 "use client";
 
 import { createPortal } from "react-dom";
-import DeleteConfirmationModal from "@/app/ui/posts/delete/deleteConfirmationModal";
+import DeletePostConfirmationModal from "@/app/ui/posts/delete/deletePostConfirmationModal";
 import { useState } from "react";
 
-export default function DeleteButton({ postId }: { postId: string }) {
+export default function DeletePostButton({ postId }: { postId: string }) {
   const [showModal, setShowModal] = useState(false);
   return (
     <div>
       <button
-        onClick={() => {
+        onClick={(event) => {
+          event.preventDefault();
           setShowModal(true);
         }}
+        className="text-red-300 hover:text-red-500"
       >
-        Delete Post
+        삭제하기
       </button>
       {showModal &&
         createPortal(
-          <DeleteConfirmationModal
+          <DeletePostConfirmationModal
             postId={postId}
-            onClose={() => {
+            onClose={(event) => {
+              event.preventDefault();
               setShowModal(false);
             }}
           />,

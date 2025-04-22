@@ -1,9 +1,9 @@
 "use client";
 import hidePost from "@/app/lib/dbAction/hidePost";
-import { EventHandler, MouseEventHandler } from "react";
+import { MouseEventHandler } from "react";
 import Modal from "@/app/ui/modal";
 
-export default function DeleteConfirmationModal({
+export default function DeletePostConfirmationModal({
   postId,
   onClose,
 }: {
@@ -17,19 +17,20 @@ export default function DeleteConfirmationModal({
   return (
     <Modal>
       <div>
-        <div>Delete Post?</div>
+        <div>글을 삭제하시겠습니까??</div>
         <div className="flex">
           <button
-            className="w-1/2"
+            className="w-1/2 hover:text-green-300"
             onClick={(event) => {
+              event.preventDefault();
               hidePostElement(postId);
               onClose(event);
             }}
           >
-            Yes
+            네
           </button>
-          <button className="w-1/2" onClick={onClose}>
-            No
+          <button className="w-1/2 hover:text-red-300" onClick={onClose}>
+            아니요
           </button>
         </div>
       </div>

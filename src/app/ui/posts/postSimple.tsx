@@ -2,8 +2,9 @@ import React from "react";
 import { PostData } from "@/app/lib/definitions";
 import { monthDayString } from "@/app/lib/misc/time";
 import { FileContainer } from "@/app/ui/posts/file/fileContainer";
-import DeleteButton from "./delete/deleteButton";
+import DeletePostButton from "./delete/deletePostButton";
 import { FileEssential } from "@/app/lib/definitions";
+import Link from "next/link";
 export default function PostSimple({
   postData,
   isAdmin,
@@ -27,18 +28,22 @@ export default function PostSimple({
   if (fileFour.name != "") files.push(fileFour);
 
   return (
-    <div id={id} className="border-2 border-t-0 border-gray-300">
-      {content != "" && (
-        <p className="overflow-hidden p-2 break-words whitespace-pre-line">
-          {content}
-        </p>
-      )}
-      {FileContainer(files)}
-      <div className="flex">
-        <div className="p-2">{monthDayString(time)}</div>
-        <div className="flex-grow"></div>
-        <div className="p-2">{isAdmin && <DeleteButton postId={id} />}</div>
-      </div>
+    <div id={id} className="border-2 border-gray-300 hover:border-gray-500">
+      <Link href={`/posts/${id}`}>
+        {content != "" && (
+          <p className="overflow-hidden p-2 break-words whitespace-pre-line">
+            {content}
+          </p>
+        )}
+        <FileContainer files={files}></FileContainer>
+        <div className="flex">
+          <div className="p-2">{monthDayString(time)}</div>
+          <div className="flex-grow"></div>
+          <div className="p-2">
+            {isAdmin && <DeletePostButton postId={id} />}
+          </div>
+        </div>
+      </Link>
     </div>
   );
 }

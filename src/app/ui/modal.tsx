@@ -1,6 +1,6 @@
 import React from "react";
 
-export default function Modal({ children }: { children: React.ReactElement }) {
+export default function Modal({ children }: { children: React.ReactNode }) {
   return (
     <div className="fixed inset-0 flex h-screen w-full items-center justify-center bg-black/50">
       <div className="h-fit w-fit rounded-md bg-white">

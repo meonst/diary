@@ -5,12 +5,13 @@ import { getPostData } from "@/app/lib/dbAction/getPosts";
 import { PostData } from "@/app/lib/definitions";
 import PostSimple from "@/app/ui/posts/postSimple";
 import Loading from "@/app/ui/loading";
+const bottomText: string =
+  "It seems like you touched Rock Bottom! Nothing to see anymore!";
 export default function PostLoader({ isAdmin }: { isAdmin: boolean }) {
   const [postData, setPostData] = useState<PostData[]>([]);
   const [reachedBottom, setReachedBottom] = useState<boolean>(false);
   const [page, setPage] = useState<number>(0);
   const { ref, inView } = useInView();
-
   useEffect(() => {
     if (inView && !reachedBottom) {
       getPostData(new FormData(), page).then((res) => {
@@ -31,11 +32,7 @@ export default function PostLoader({ isAdmin }: { isAdmin: boolean }) {
           <Loading></Loading>
         </div>
       )}
-      {reachedBottom && (
-        <div className="text-center">
-          It seems like you touched Rock Bottom! Nothing to see anymore!
-        </div>
-      )}
+      {reachedBottom && <div className="text-center">{bottomText}</div>}
     </div>
   );
 }
@@ -93,11 +90,7 @@ export function PostLoaderControlledByParent({
           <Loading></Loading>
         </div>
       )}
-      {reachedBottom && (
-        <div className="text-center">
-          It seems like you touched Rock Bottom! Nothing to see anymore!
-        </div>
-      )}
+      {reachedBottom && <div className="text-center">{bottomText}</div>}
     </div>
   );
 }

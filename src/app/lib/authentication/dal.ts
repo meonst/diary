@@ -8,8 +8,19 @@ export const verifySession = cache(async () => {
   if (!session?.userId) {
     return { isAuth: false, userId: "", userRole: "" };
   }
-  return { isAuth: true, userId: session.userId, userRole: session.userRole };
+  return {
+    isAuth: true,
+    userId: session.userId,
+    userRole: session.userRole,
+    userEmail: session.userEmail,
+  };
 });
+
+export async function verifyAdmin(): Promise<boolean> {
+  const session = await verifySession();
+  const isAdmin: boolean = session.isAuth && session.userRole == "admin";
+  return isAdmin;
+}
 
 async function getSession() {
   const cookie = (await cookies()).get("session")?.value;

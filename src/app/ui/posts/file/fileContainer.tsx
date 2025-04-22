@@ -3,7 +3,7 @@ import { fileContainerClassNames, fileClassNames } from "@/app/lib/classNames";
 import { FileEssential } from "@/app/lib/definitions";
 import { File } from "@/app/ui/posts/file/file";
 
-export function FileContainer(files: FileEssential[]) {
+export function FileContainer({ files }: { files: FileEssential[] }) {
   return (
     <div className={fileContainerClassNames[files.length - 1]}>
       {files.map((file: FileEssential, index: number) => {
@@ -19,10 +19,13 @@ export function FileContainer(files: FileEssential[]) {
     </div>
   );
 }
-export function FileContainerWithDelete(
-  files: FileEssential[],
-  removeFile: (index: number) => void,
-) {
+export function FileContainerWithDelete({
+  files,
+  removeFile,
+}: {
+  files: FileEssential[];
+  removeFile: (index: number) => void;
+}) {
   return (
     <div className={fileContainerClassNames[files.length - 1]}>
       {files.map((file: FileEssential, index: number) => {

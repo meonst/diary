@@ -10,6 +10,14 @@ export type PostData = {
   fileFour: FileEssential;
 };
 
+export type CommentData = {
+  id: string;
+  content: string;
+  time: Date;
+  authorId: string;
+  authorEmail: string;
+};
+
 export const LoginFormSchema = z.object({
   email: z.string().email({ message: "Please enter a valid email" }).trim(),
   password: z.string().trim(),

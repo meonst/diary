@@ -4,6 +4,12 @@
 4. select a color theme and apply it OR make it depend on a color so it works with any color the user chooses
 5. add styling for different situations, size, state, maybe time
 
+mobile environment
+1. the modal is hard to read
+2. makePostForm not preety in mobile
+3. move search and logout/login button
+
+
 saving file data in db
 
 add styling!

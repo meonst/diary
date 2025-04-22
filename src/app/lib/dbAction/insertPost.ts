@@ -2,11 +2,12 @@
 import { QueryConfig, sql } from "@vercel/postgres";
 import { uploadFile } from "@/app/lib/bucketAction/uploadFile";
 import { currentTime } from "@/app/lib/misc/time";
-import { verifySession } from "@/app/lib/authentication/dal";
+import { verifyAdmin } from "@/app/lib/authentication/dal";
 
 export default async function insertPost(files: File[], content: string) {
-  const session = await verifySession();
-  if (!session || !session.isAuth || session.userRole != "admin") return;
+  const isAdmin = await verifyAdmin();
+  if (!isAdmin) return;
+
   const fileNames: string[] = [];
   for (let i = 0; i < files.length; i++) {
     fileNames.push(await uploadFile(files[i]));

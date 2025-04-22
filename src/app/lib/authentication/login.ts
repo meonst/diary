@@ -35,7 +35,8 @@ export default async function handleLogin(
     if (await bcrypt.compare(password, hashedPassword)) {
       const userId: string = checkString(userRows.rows[0]["id"]);
       const userRole: string = checkString(userRows.rows[0]["role"]);
-      await createSession(userId, userRole);
+      const userEmail: string = checkString(userRows.rows[0]["email"]);
+      await createSession(userId, userRole, userEmail);
       redirect("/posts");
     } else {
       return {

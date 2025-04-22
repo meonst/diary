@@ -25,11 +25,15 @@ export async function decrypt(session: string | undefined = "") {
   }
 }
 
-export async function createSession(userId: string, userRole: string) {
+export async function createSession(
+  userId: string,
+  userRole: string,
+  userEmail: string,
+) {
   const month: number = 2592000000;
   const expiresAt = new Date(Date.now() + month);
 
-  const session = await encrypt({ userId, userRole, expiresAt });
+  const session = await encrypt({ userId, userRole, userEmail, expiresAt });
   const cookieStore = await cookies();
 
   cookieStore.set("session", session, {
