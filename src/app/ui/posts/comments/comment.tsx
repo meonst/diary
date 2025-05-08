@@ -1,20 +1,20 @@
-import { CommentData } from "@/app/lib/definitions";
+import { CommentData, SessionInfo } from "@/app/lib/definitions";
 import { shortDateString } from "@/app/lib/misc/time";
-import { verifySession } from "@/app/lib/authentication/dal";
+import { getSessionInfo } from "@/app/lib/authentication/dal";
 import DeleteCommentButton from "@/app/ui/posts/comments/deleteCommentButton";
 export default async function Comment({
   commentData,
 }: {
   commentData: CommentData;
 }) {
-  const { userId } = await verifySession();
+  const sessionInfo: SessionInfo = await getSessionInfo();
   return (
-    <div className="mt-1 rounded-md border-1 p-1">
+    <div className="mt-1 rounded-md border-2 border-gray-300 p-1 hover:border-gray-500">
       <div className="flex">
         <div className="text-s">{commentData.authorEmail}</div>
         <div className="flex-grow"></div>
         <div>
-          {userId == commentData.authorId && (
+          {sessionInfo.userId == commentData.authorId && (
             <DeleteCommentButton
               commentId={commentData.id}
             ></DeleteCommentButton>

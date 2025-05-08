@@ -1,10 +1,11 @@
 import Link from "next/link";
 import React from "react";
-import { verifySession } from "@/app/lib/authentication/dal";
+import { getSessionInfo } from "@/app/lib/authentication/dal";
 import LogoutForm from "../authenticate/logoutForm";
 import ThemeToggleButton from "@/app/ui/topbar/themeToggleButton";
+import { SessionInfo } from "@/app/lib/definitions";
 export default async function Topbar() {
-  const session = await verifySession();
+  const sessionInfo: SessionInfo = await getSessionInfo();
 
   return (
     <div className="relative flex items-center justify-center border-b-2 border-gray-300 p-2">
@@ -17,7 +18,7 @@ export default async function Topbar() {
         <Link href="/search" className="pr-3">
           Search
         </Link>
-        {session.isAuth ? (
+        {sessionInfo.isAuth ? (
           <LogoutForm />
         ) : (
           <Link href="/authenticate/login">Login</Link>

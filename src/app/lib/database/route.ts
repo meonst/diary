@@ -1,5 +1,6 @@
 import { db } from "@vercel/postgres";
-import { verifyAdmin } from "@/app/lib/authentication/dal";
+import { getSessionInfo } from "@/app/lib/authentication/dal";
+import { SessionInfo } from "@/app/lib/definitions";
 const client = await db.connect();
 
 async function createPostsTable() {
@@ -55,8 +56,8 @@ async function createUuidExtension() {
 }
 
 export async function GET() {
-  const isAdmin = await verifyAdmin();
-  if (!isAdmin) return;
+  const sessionInfo: SessionInfo = await getSessionInfo();
+  if (!sessionInfo.isAdmin) return;
   try {
     await client.sql`BEGIN`;
     await createUuidExtension();

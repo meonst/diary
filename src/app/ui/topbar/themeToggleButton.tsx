@@ -4,6 +4,7 @@ import { useTheme } from "next-themes";
 export default function ThemeToggleButton() {
   const { systemTheme, theme, setTheme } = useTheme();
   const currentTheme = theme === "system" ? systemTheme : theme;
+  console.log(currentTheme);
   return (
     <button
       suppressHydrationWarning

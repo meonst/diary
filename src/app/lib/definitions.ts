@@ -63,3 +63,11 @@ export type FileEssential = {
   name: string;
   type: number;
 };
+
+export type SessionInfo = {
+  isAuth: boolean;
+  isAdmin: boolean;
+  userId: unknown;
+  userRole: unknown;
+  userEmail: unknown;
+};

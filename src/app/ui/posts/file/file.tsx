@@ -11,7 +11,7 @@ export function File({ file }: { file: FileEssential }) {
   const isVideo: boolean = fileType == FileTypes.Video;
   const isFile: boolean = !isImage && !isVideo;
   return (
-    <div className="">
+    <div className="border-1 border-gray-300 hover:border-gray-500">
       {isFile && <DefaultFile file={file} />}
       {isImage && <ImageFile file={file} />}
       {isVideo && <VideoFile file={file} />}

@@ -26,7 +26,7 @@ export default function RootLayout({
   return (
     <html lang="en" className="overflow-y-scroll" suppressHydrationWarning>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} border-b-2 border-gray-300 antialiased`}
       >
         <Provider>
           <Topbar />

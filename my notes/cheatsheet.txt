@@ -20,4 +20,12 @@ npm install bcrypt -g
 npm install bcrypt --save
 
 
-rounded-md
+commonly used classes for tailwind
+  rounded-md
+
+  border-gray-300
+  hover:border-gray-500
+
+  text-red-300
+  hover:text-red-500
+  
