@@ -17,7 +17,7 @@ export default function MakeCommentForm({ postId }: { postId: string }) {
   }
 
   return (
-    <div className="h-fit min-h-24 w-full rounded-md border-2 border-gray-300">
+    <div className="min-h-18 ml-0.5 mr-0.5 border-t-4 border-b-4 border-gray-300 hover:bg-gray-50">
       {uploading && (
         <div className="absolute top-0 left-0 flex h-full w-full items-center justify-center bg-gray-800/20">
           <Loading></Loading>
@@ -37,8 +37,8 @@ export default function MakeCommentForm({ postId }: { postId: string }) {
               event.target.style.height = "auto";
               event.target.style.height = `${event.target.scrollHeight}px`;
             }}
-            placeholder="Write a comment!"
-            className="max-h-66 min-h-22 w-full resize-none p-2"
+            placeholder="댓글 적기"
+            className="max-h-66 w-full resize-none p-2"
           ></textarea>
         </div>
         <div className="flex w-full">

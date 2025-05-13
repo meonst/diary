@@ -36,9 +36,9 @@ export default async function PostDetail({
   if (fileFour.name != "") files.push(fileFour);
   return (
     <div className="flex flex-col items-center">
-      <div className="w-xl border-r-2 border-l-2 border-gray-300">
+      <div className="w-xl min-h-screen">
         <div id={id}>
-          <div className="">
+          <div className="hover:bg-gray-50">
             {content != "" && (
               <p className="overflow-hidden p-2 break-words whitespace-pre-line">
                 {content}

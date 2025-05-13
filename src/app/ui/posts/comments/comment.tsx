@@ -9,7 +9,7 @@ export default async function Comment({
 }) {
   const sessionInfo: SessionInfo = await getSessionInfo();
   return (
-    <div className="mt-1 rounded-md border-2 border-gray-300 p-1 hover:border-gray-500">
+    <div className="first:border-t-0 border-t-2 border-b-2 border-gray-300 p-1 hover:bg-gray-50">
       <div className="flex">
         <div className="text-s">{commentData.authorEmail}</div>
         <div className="flex-grow"></div>

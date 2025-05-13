@@ -28,7 +28,7 @@ export default function PostSimple({
   if (fileFour.name != "") files.push(fileFour);
 
   return (
-    <div id={id} className="border-2 border-gray-300 hover:border-gray-500">
+    <div id={id} className="first:border-t-0 border-t-2 border-b-2 border-gray-300 hover:bg-gray-50">
       <Link href={`/posts/${id}`}>
         {content != "" && (
           <p className="overflow-hidden p-2 break-words whitespace-pre-line">
@@ -37,7 +37,7 @@ export default function PostSimple({
         )}
         <FileContainer files={files}></FileContainer>
         <div className="flex">
-          <div className="p-2">{monthDayString(time)}</div>
+          <label className="p-2">{monthDayString(time)}</label>
           <div className="flex-grow"></div>
           <div className="p-2">
             {isAdmin && <DeletePostButton postId={id} />}

@@ -8,7 +8,7 @@ export default async function Topbar() {
   const sessionInfo: SessionInfo = await getSessionInfo();
 
   return (
-    <div className="relative flex items-center justify-center border-b-2 border-gray-300 p-2">
+    <div className="relative flex items-center justify-center border-b-4 border-gray-300 p-2">
       <Link className="text-center text-3xl" href="/posts">
         {"Minhyeok's Diary"}
       </Link>

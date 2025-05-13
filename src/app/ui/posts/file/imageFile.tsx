@@ -5,7 +5,7 @@ import { redirect } from "next/navigation";
 export default function ImageFile({ file }: { file: FileEssential }) {
   return (
     <div
-      className="flex aspect-16/9 h-full w-full items-center justify-center overflow-hidden"
+      className="flex aspect-auto h-full w-full items-center justify-center overflow-hidden"
       onClick={(event) => {
         redirect(file.url);
       }}

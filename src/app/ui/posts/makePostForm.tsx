@@ -92,7 +92,7 @@ export default function MakePostForm() {
     <div
       onDragOver={handleDragOver}
       onDrop={handleDrop}
-      className="relative h-fit min-h-32 w-full max-w-xl border-2 border-t-0 border-gray-300 sm:w-xl"
+      className="relative h-fit min-h-32 w-full max-w-xl border-t-0 border-b-4 border-gray-300 sm:w-xl"
     >
       {uploading && (
         <div className="absolute top-0 left-0 flex h-full w-full items-center justify-center bg-gray-800/20">
